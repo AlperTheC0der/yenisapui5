@@ -1,0 +1,17 @@
+<mvc:View
+   controllerName="sap.ui.demo.walkthrough.controller.Header"
+   xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:tnt="sap.tnt">
+   	<tnt:ToolHeader>
+		<Button icon="sap-icon://product" type="Transparent" />
+		<Text text="{i18n>headerTextName}" wrapping="false" />
+		<ToolbarSpacer />
+		<Button icon="sap-icon://search" type="Transparent" />
+		<Button icon="sap-icon://task" type="Transparent" />
+		<Button icon="sap-icon://bell" type="Transparent" />
+		<Avatar  displaySize="XS" />
+		<Button icon="sap-icon://grid" type="Transparent" />
+	</tnt:ToolHeader>
+ 
+</mvc:View>

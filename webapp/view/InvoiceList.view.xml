@@ -1,0 +1,144 @@
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.Invoice"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:table="sap.m.Table"
+    xmlns:l="sap.ui.layout">
+    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<Label text="Input with grouped suggestions" labelFor="productInputWithList" />
+		<Input
+			id="productInputWithList"
+			placeholder="Enter product"
+			showSuggestion="true"
+			suggestionItems="{
+				path: '/Invoices',
+				sorter: {
+					path: 'SupplierName',
+					group: true,
+					ascending: false
+				}
+			}">
+			<suggestionItems>
+				<core:Item text="{Name}" />
+			</suggestionItems>
+		</Input>
+
+		<Label text="Input with grouped tabular suggestions" labelFor="productInputWithTable" />
+	</l:VerticalLayout>
+
+    
+         <Toolbar>
+         <!-- <ComboBox
+               
+                items="{
+					path: '/Invoices'
+				}">
+				<core:Item key="{UoM}" text="{Status}"  />
+			</ComboBox> -->
+            <SearchField placeholder="{i18n>searchBarText}" width="auto" search=".onFilterInvoices1"/>
+            <SearchField placeholder="{i18n>searchBarText1}" width="auto" search=".onFilterInvoices"/>
+         </Toolbar>
+      
+    <Table 
+      id="invoiceList"
+      headerText="{i18n>invoiceListTitle}"
+      alternateRowColors="true"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{path :'/Invoices',
+                sorter : {
+				path : 'Category',
+				group : true
+			}}"
+      >
+      <headerToolbar>
+				<OverflowToolbar>
+						<content>
+                            <Button
+                                class="customBTN"
+								id="sortUsersButton"
+								icon="sap-icon://sort"
+								tooltip="{i18n>sortButtonText}"
+								press="onSort"/>            
+                        </content>
+					</OverflowToolbar>
+		</headerToolbar>
+       
+      
+        <columns>
+			<Column
+				width="12em">
+				<Text text="{i18n>invoiceTablePicColumnName}" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="{i18n>invoiceTablePrdctColumnName}" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="{i18n>invoiceTableSpllrColumnName}" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="{i18n>invoiceTableDmnsnColumnName}" />
+			</Column>
+			<Column
+				hAlign="Center">
+				<Text text="{i18n>invoiceTableQnttyColumnName}" />
+			</Column>
+            <Column
+				hAlign="Center">
+				<Text text="{i18n>invoiceTablePrcsColumnName}" />
+			</Column>
+
+		</columns>
+
+        <items>
+			<ColumnListItem 
+            >
+            <customData>
+                    <core:CustomData key="color" value="{= 'green'}" writeToDom="true" />
+            </customData>
+				<cells>
+					<Image
+                        width="5em"
+                        height="5em"
+                        src="{ProductPicUrl}"/>
+					<Text
+						text="{Name}" />
+					<Text
+                        text= "{SupplierName}" />
+                    <Text
+						text="{Width} x {Depth} x {Height} {DimUnit}" />
+                     
+                    <ObjectNumber
+							number="{Quantity}"
+							state="{path: 'Quantity',
+                                    formatter: '.formatter.weightState'}"
+                             />
+                    <ObjectNumber
+                        number="{
+								parts:[{path:'Price'},{path:'CurrencyCode'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false}
+							}"
+                        unit="{CurrencyCode}"
+                        state="{= ${Price} > 1000 ? 'Error' : 'Success' }" 
+                        />
+                    
+                         
+				</cells>
+			</ColumnListItem>
+            
+		</items>
+       
+    </Table>
+    
+
+</mvc:View>
