@@ -29,13 +29,7 @@
 
     
          <Toolbar>
-         <!-- <ComboBox
-               
-                items="{
-					path: '/Invoices'
-				}">
-				<core:Item key="{UoM}" text="{Status}"  />
-			</ComboBox> -->
+         
             <SearchField placeholder="{i18n>searchBarText}" width="auto" search=".onFilterInvoices1"/>
             <SearchField placeholder="{i18n>searchBarText1}" width="auto" search=".onFilterInvoices"/>
          </Toolbar>
@@ -96,7 +90,6 @@
 				hAlign="Center">
 				<Text text="{i18n>invoiceTablePrcsColumnName}" />
 			</Column>
-
 		</columns>
 
         <items>
@@ -131,6 +124,7 @@
                         unit="{CurrencyCode}"
                         state="{= ${Price} > 1000 ? 'Error' : 'Success' }" 
                         />
+					
                     
                          
 				</cells>
